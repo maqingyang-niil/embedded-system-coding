@@ -1,0 +1,11 @@
+MX_USART1_UART_Init();
+HAL_UART_Receive_IT(&huart1,(u8 *)aRXBuff_temp,1);
+上面的函数用于初始化收发相关的参数，而且，接口在初始化是被默认关闭，
+if (uwTick-uwTickUart>=2000)
+			{
+				uwTickUart=uwTick;
+        HAL_UART_Transmit(&huart1,(u8*)ERROR,strlen(ERROR),0xffff);
+			}
+此结构用于每2000（n）个计数单位运行一次if语句中的操作，在这里就是每2000秒发送一次ERROR数组中储存的信息
+HAL_UART_Transmit(&huart1,(u8*)ERROR,strlen(ERROR),0xffff);
+第一个参数是用于收发的接口的地址；第二个参数是一个数组，如果是接受信息，则是用于储存接收的信息的数组，如果是发出信息，则是发出的信息的数组；第三个参数是收发数据持续的最大秒数。
