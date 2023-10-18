@@ -1,1 +1,20 @@
-
+HAL_GPIO_Init()
+  @brief  初始化GPIO引脚，
+HAL_GPIO_ReadPin()
+  @函数原型为  GPIO_PinState HAL_GPIO_ReadPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+  @brief  读取指定的输入端口引脚的电平值
+  @param  GPIOx (如GPIOC)
+  @param  GPIO_Pin (如GPIO_PIN_13)
+  @retval 返回引脚电平值（0或1）
+HAL_GPIO_TogglePin()
+  @函数原型为  void HAL_GPIO_TogglePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+  @brief  翻转引脚电平
+  @param  GPIOx (如GPIOC)
+  @param  GPIO_Pin (如GPIO_PIN_13)
+  @retval None
+HAL_GPIO_WritePin()
+  @函数原型为  void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState)
+  @brief  设置相应接口
+  @param  GPIOx  (如GPIOC)
+  @param  GPIO_PIN  (如GPIO_PIN_13)
+  @param  PinState （GPIO_PIN_RESET==低电平==0或 GPIO_PIN_SET==高电平==1）
