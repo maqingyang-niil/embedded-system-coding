@@ -1,4 +1,5 @@
 MX_USART1_UART_Init();
+  @ brief  初始化相关接口
 HAL_UART_Receive_IT(&huart1,(u8 *)aRXBuff_temp,1);
 上面的函数用于初始化收发相关的参数，而且，接口在初始化是被默认关闭，
 if (uwTick-uwTickUart>=2000)
