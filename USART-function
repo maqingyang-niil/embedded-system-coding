@@ -1,12 +1,19 @@
 MX_USART1_UART_Init();
   @ brief  初始化相关接口
 HAL_UART_Receive_IT(&huart1,(u8 *)aRXBuff_temp,1);
-上面的函数用于初始化收发相关的参数，而且，接口在初始化是被默认关闭，
-if (uwTick-uwTickUart>=2000)
-			{
-				uwTickUart=uwTick;
-        HAL_UART_Transmit(&huart1,(u8*)ERROR,strlen(ERROR),0xffff);
-			}
-此结构用于每2000（n）个计数单位运行一次if语句中的操作，在这里就是每2000秒发送一次ERROR数组中储存的信息
+  @ brief  打开串口
+  @ param  
 HAL_UART_Transmit(&huart1,(u8*)ERROR,strlen(ERROR),0xffff);
 第一个参数是用于收发的接口的地址；第二个参数是一个数组，如果是接受信息，则是用于储存接收的信息的数组，如果是发出信息，则是发出的信息的数组；第三个参数是收发数据持续的最大秒数。
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef*huart)
+{
+	if (huart==&huart1)
+	{
+		Tx=Rx;
+		HAL_UART_Transmit(&huart1,&Tx,1,1000);
+		HAL_UART_Receive_IT(&huart1,&Rx,1);
+	}
+}
+  @ brief  以中断的方式打开串口，接收数据，比较串口确保从指定的串口接收数据，接收的数据存储在Rx中，并将其传递给Tx（收发数据要隔离），
+        将Tx中的数据发送出去，再次打开串口（如果没有HAL_UART_Receive_IT(&huart1,&Rx,1)，串口在进行完一次收发数据后被关上了，所以
+        想要进行连续的收发数据，必须在一次收发结束后再次打开串口）。
