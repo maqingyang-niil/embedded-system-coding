@@ -1,6 +1,7 @@
 MX_USART1_UART_Init();
   @ brief  初始化相关接口
 HAL_UART_Receive_IT(&huart1,(u8 *)aRXBuff_temp,1);
+  @ 原型  HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
   @ brief  打开串口
   @ param  
 HAL_UART_Transmit(&huart1,(u8*)ERROR,strlen(ERROR),0xffff);
