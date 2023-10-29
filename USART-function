@@ -1,11 +1,18 @@
 MX_USART1_UART_Init();
   @ brief  初始化相关接口
 HAL_UART_Receive_IT(&huart1,(u8 *)aRXBuff_temp,1);
-  @ 原型  HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
+  @ 原型  HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
   @ brief  打开串口
-  @ param  
+  @ param  UART_HandleTypeDef *huart  接收串口
+  @ param  uint8_t *pData  接收数据的缓存区指针
+  @ param  uint16_t Size  接收字节数
 HAL_UART_Transmit(&huart1,(u8*)ERROR,strlen(ERROR),0xffff);
-第一个参数是用于收发的接口的地址；第二个参数是一个数组，如果是接受信息，则是用于储存接收的信息的数组，如果是发出信息，则是发出的信息的数组；第三个参数是收发数据持续的最大秒数。
+  @ 原型  HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout)
+  @ brief  将数据发送到屏幕上
+  @ param  UART_HandleTypeDef *huart  发送到的串口
+  @ param  const uint8_t *pData  被发送数据的指针
+  @ param  uint16_t Size  发送的数据字节长度
+  @ param  uint32_t Timeout  最大发送时间
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef*huart)
 {
 	if (huart==&huart1)
